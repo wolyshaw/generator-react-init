@@ -1,6 +1,6 @@
 {
   "name": "generator-react-init",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "yeoman react generator tool",
   "main": "server.js",
   "repository": {
