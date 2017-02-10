@@ -3,9 +3,6 @@
   "version": "1.0.3",
   "description": "yeoman react generator tool",
   "main": "server.js",
-	"files": [
-		"src"
-	],
   "repository": {
     "type": "git",
     "url": "https://github.com/wolyshaw/generator-react-init.git"
