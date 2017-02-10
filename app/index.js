@@ -1,9 +1,5 @@
 'use strict'
-const _ = require('lodash')
 const path = require('path')
-const mkdirp = require('mkdirp')
-const extend = require('deep-extend')
-const askName = require('inquirer-npm-name')
 const Generator = require('yeoman-generator')
 
 module.exports = class extends Generator {
