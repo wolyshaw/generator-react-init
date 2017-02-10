@@ -1,2 +1,10 @@
 ### <%- name %>
-此项目适用于react redux webpack
+
+开发时执行：
+```
+npm run dev
+```
+生产环境：
+```
+npm run build
+```

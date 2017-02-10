@@ -6,7 +6,7 @@ const extend = require('deep-extend')
 const askName = require('inquirer-npm-name')
 const Generator = require('yeoman-generator')
 
-module.exports = class extends Generator{
+module.exports = class extends Generator {
 	initializing() {
 		this.props = {}
 	}
@@ -64,15 +64,44 @@ module.exports = class extends Generator{
 	writing() {
 		let pkg = Object.assign({}, this.props)
 		pkg.keywords = this.props.keywords.split(' ') || []
-		pkg.dependencies = {
-			'react': 'latest'
-		}
 		 this.fs.copyTpl(
 			 this.templatePath('README.md'),
 			 this.destinationPath('README.md'),
 			 { name: this.props.name }
 		 )
-		console.log(pkg)
-		// this.fs.writeJSON(this.destinationPath('package.json'), pkg)
+		 this.fs.copyTpl(
+			 this.templatePath('.gitignore'),
+			 this.destinationPath('.gitignore')
+		 )
+		 this.fs.copyTpl(
+			 this.templatePath('server.js'),
+			 this.destinationPath('server.js')
+		 )
+		 this.fs.copyTpl(
+			 this.templatePath('config_default.js'),
+			 this.destinationPath('config_default.js')
+		 )
+		 this.fs.copyTpl(
+			 this.templatePath('webpack.config.js'),
+			 this.destinationPath('webpack.config.js')
+		 )
+		 this.fs.copyTpl(
+			 this.templatePath('webpack.config.dev.js'),
+			 this.destinationPath('webpack.config.dev.js')
+		 )
+		 pkg.scripts = {
+			 dev: 'webpack --config ./webpack.config.dev.js && node server.js',
+			 build: 'webpack'
+		 }
+		 this.fs.writeJSON(this.destinationPath('package.json'), pkg)
+	}
+
+	default() {
+		this.composeWith(require.resolve('./src'))
+	}
+
+	install() {
+		this.npmInstall(['react', 'react-dom', 'redux', 'react-router', 'redux-thunk', 'isomorphic-fetch', 'express', 'react-redux'], { 'save': true })
+		this.npmInstall(['webpack', 'compression', 'babel-core', 'babel-loader', 'babel-preset-es2015', 'babel-preset-react', 'webpack-dev-middleware', 'webpack-hot-middleware', 'html-webpack-plugin'], { 'saveDev': true })
 	}
 }
