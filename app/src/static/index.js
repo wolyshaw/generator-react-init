@@ -12,7 +12,13 @@ module.exports = class extends Generator {
 		)
 		this.fs.copyTpl(
 			this.templatePath('index_default.html'),
-			this.destinationPath('src/static/index_default.html')
+			this.destinationPath('src/static/index_default.html'),
+			{
+				title: '<%= htmlWebpackPlugin.options.title %>',
+				keywords: '<%= htmlWebpackPlugin.options.keywords %>',
+				description: '<%= htmlWebpackPlugin.options.description %>',
+				header: '<%= htmlWebpackPlugin.options.header %>'
+			}
 		)
 	}
 }
