@@ -1,23 +1,42 @@
 const webpack = require('webpack')
 const path = require('path')
 const config = require('./config')
+const CleanPlugin = require("clean-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    index: './src/index.js'
+    vendor: ['react', 'react-dom', 'react-router', 'react-router-redux', 'redux', 'react-redux', 'redux-thunk', 'isomorphic-fetch'],
+    bundle: './src/index.js'
   },
   output: {
-    filename: 'index.min.js',
+    filename: '[hash:5].[name].js',
     path: path.resolve('./dist'),
-    publicPath: '/'
+    publicPath: '/',
+    chunkFilename: '/[hash:5].[name].chunk.js'
   },
   module: {
-    loaders: [{
+    loaders: [
+      {
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader?presets[]=es2015&presets[]=react'
-    }]
+    },
+    {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract({
+        fullbackLoader: 'style-loader',
+        loader: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]']
+      })
+    }
+    ]
+  },
+  resolve: {
+    alias: {
+      static: path.resolve(path.join(__dirname, 'src', 'static')),
+      components: path.resolve(path.join(__dirname, 'src', 'components'))
+    }
   },
   plugins: [
 		new HtmlWebpackPlugin({
@@ -27,6 +46,10 @@ module.exports = {
 			description: config.site.description,
 			header: config.site.header
 		}),
+    new ExtractTextPlugin({
+      filename: 'static/[hash:5].[name].css',
+      allChunks: true
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
@@ -36,6 +59,10 @@ module.exports = {
         'process.env': {
             NODE_ENV: '"production"'
         }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity
     })
   ]
 }
