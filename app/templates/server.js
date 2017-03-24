@@ -2,6 +2,7 @@ const path = require('path')
 const express = require('express')
 const webpack = require('webpack')
 const compression = require('compression')
+const httpProxyMiddleware = require('http-proxy-middleware')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 
@@ -12,6 +13,12 @@ const app = express()
 const compiler = webpack(webpackDevConfig)
 
 app.use(compression())
+app.use('/api', httpProxyMiddleware(
+  {
+    target: 'http://www.example.org',
+    changeOrigin: true
+  }
+))
 
 app.use(
   webpackDevMiddleware(compiler, {

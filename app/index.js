@@ -98,7 +98,7 @@ module.exports = class extends Generator {
 
 	install() {
 		this.npmInstall(['react', 'react-dom', 'redux', 'react-router', 'react-router-redux', 'redux-thunk', 'isomorphic-fetch', 'express', 'react-redux'], { 'save': true })
-		this.npmInstall(['webpack', 'compression', 'babel-core', 'babel-loader', 'babel-preset-es2015', 'babel-preset-react', 'webpack-dev-middleware', 'webpack-hot-middleware', 'html-webpack-plugin'], { 'saveDev': true })
+		this.npmInstall(['webpack', 'compression', 'babel-core', 'babel-loader', 'babel-preset-es2015', 'babel-preset-react', 'webpack-dev-middleware', 'webpack-hot-middleware', 'html-webpack-plugin', 'http-proxy-middleware'], { 'saveDev': true })
 	}
 
 	end() {
