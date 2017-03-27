@@ -1,4 +1,5 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
 
 export const setApp = (state = {app: 'react-init'}, action) => {
 	switch(action.type) {
@@ -11,8 +12,7 @@ export const setApp = (state = {app: 'react-init'}, action) => {
 	}
 }
 
-
-
 export default combineReducers({
-	setApp
+	setApp,
+	router: routerReducer
 })
