@@ -1,6 +1,6 @@
 {
   "name": "generator-react-init",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "yeoman react generator tool",
   "main": "server.js",
   "repository": {
@@ -9,19 +9,20 @@
   },
   "keywords": [
     "react",
-		"yeoman-generator"
+    "yeoman-generator"
   ],
   "author": {
-		"name": "wolyshaw",
-		"email": "shaw@xwlong.com",
-		"url": "https://xwlong.com"
-	},
+    "name": "wolyshaw",
+    "email": "shaw@xwlong.com",
+    "url": "https://xwlong.com"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/wolyshaw/generator-react-init/issues"
   },
   "homepage": "https://github.com/wolyshaw/generator-react-init#readme",
   "dependencies": {
+    "chalk": "^2.0.1",
     "mkdirp": "^0.5.1",
     "path": "^0.12.7",
     "yeoman-generator": "^1.1.0",

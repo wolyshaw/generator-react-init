@@ -1,10 +1,11 @@
-### <%- name %>
+#### new project
 
-开发时执行：
+strat development
 ```
 npm run dev
 ```
-生产环境：
+
+strat production
 ```
 npm run build
 ```

@@ -1,10 +1,10 @@
 module.exports = {
-	debug: true,
-	port: 8000,
-	site: {
-		title: '',
-		keywords: '',
-		description: '',
-		header: ''
-	}
+  debug: true,
+  port: 4000,
+  site: {
+    title: '',
+    keywords: '',
+    description: '',
+    header: ''
+  }
 }
