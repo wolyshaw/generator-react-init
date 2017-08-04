@@ -24,9 +24,8 @@ let buildDir = 'dist'
 if (config.debug) {
   buildDir = 'dev'
 }
-app.use('/common', proxy({target: 'http://localhost:4000', changeOrigin: true}))
-app.use('/front', proxy({target: 'http://localhost:4000', changeOrigin: true}))
-app.use('/manage', proxy({target: 'http://localhost:4000', changeOrigin: true}))
+// 如果需要代理可以取消注释
+// app.use('/common', proxy({target: 'http://localhost:4000', changeOrigin: true}))
 app.use('/dist', express.static(buildDir))
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, buildDir, 'index.html'))

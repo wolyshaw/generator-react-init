@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import Applications from 'components'
 import thunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
-import store from '../reducers'
+import store from './reducers'
 
 const middleware = [ thunk ]
 

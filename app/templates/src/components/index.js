@@ -15,7 +15,6 @@ const Home = props => (
 const NotFind = props => {
   return (
     <div>
-      <Helmet title={ '当前页面未找到' }/>
       当前页面未找到
     </div>
   )
